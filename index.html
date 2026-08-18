@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sandra's Confort · Masajes y bienestar</title>
+  <meta name="description" content="Reservá tu sesión de masajes online. Descontracturantes, relajantes, piedras calientes y deportivos. Turnos fáciles, confirmación por email.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='42' fill='%23F5EEE0'/%3E%3Ccircle cx='50' cy='50' r='27' fill='none' stroke='%239C5236' stroke-width='6'/%3E%3Ccircle cx='50' cy='50' r='12' fill='%23BD8B3F'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header" id="header">
+    <div class="header-inner">
+      <a href="#inicio" class="logo js-nombre-negocio">Sandra's Confort</a>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#reservas">Reservas</a>
+        <a href="#resenas">Reseñas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===================== HERO ===================== -->
+    <section id="inicio" class="hero">
+      <div class="hero-ripples" aria-hidden="true">
+        <svg viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <circle class="ripple ripple-1" cx="320" cy="240" r="60"/>
+          <circle class="ripple ripple-2" cx="320" cy="240" r="110"/>
+          <circle class="ripple ripple-3" cx="320" cy="240" r="165"/>
+          <circle class="ripple ripple-4" cx="320" cy="240" r="225"/>
+        </svg>
+      </div>
+      <div class="hero-content">
+        <p class="eyebrow">Masajes en San José</p>
+        <h1>Un rato para que <em>el cuerpo</em> afloje</h1>
+        <p class="hero-text">Sesiones pensadas para lo que se acumula: contracturas, estrés, el cansancio de la semana. Elegís el día, la hora y el servicio — nosotros nos ocupamos del resto.</p>
+        <a href="#reservas" class="btn btn-primary">Reservar mi turno</a>
+      </div>
+    </section>
+
+    <!-- ===================== SERVICIOS ===================== -->
+    <section id="servicios" class="section">
+      <p class="eyebrow">Servicios</p>
+      <h2>Elegí tu momento</h2>
+      <p class="section-intro">Cuatro formas de bajar un cambio. Cada sesión se adapta a lo que tu cuerpo esté pidiendo.</p>
+
+      <div class="services-grid" id="services-grid">
+        <!-- Las tarjetas de servicios se generan con JS desde script.js -->
+      </div>
+    </section>
+
+    <!-- ===================== RESERVAS ===================== -->
+    <section id="reservas" class="section reservas">
+      <p class="eyebrow">Reservas</p>
+      <h2>Elegí tu día y tu hora</h2>
+      <p class="section-intro">Completá tus datos y coordinamos todo desde acá. La confirmación te llega por email.</p>
+
+      <form id="reserva-form" class="form">
+        <div class="form-row">
+          <div class="field">
+            <label for="r-nombre">Nombre</label>
+            <input type="text" id="r-nombre" name="nombre" autocomplete="given-name" required>
+          </div>
+          <div class="field">
+            <label for="r-apellido">Apellido</label>
+            <input type="text" id="r-apellido" name="apellido" autocomplete="family-name" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="r-telefono">Teléfono</label>
+            <input type="tel" id="r-telefono" name="telefono" autocomplete="tel" placeholder="099 123 456" required>
+          </div>
+          <div class="field">
+            <label for="r-email">Email</label>
+            <input type="email" id="r-email" name="email" autocomplete="email" placeholder="vos@email.com" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="r-servicio">Servicio</label>
+          <select id="r-servicio" name="servicio" required>
+            <option value="" disabled selected>Elegí un servicio</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="r-fecha">Fecha</label>
+            <input type="date" id="r-fecha" name="fecha" required>
+          </div>
+          <div class="field">
+            <label for="r-hora">Hora</label>
+            <select id="r-hora" name="hora" required>
+              <option value="" disabled selected>Elegí primero la fecha</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="r-comentario">Comentario (opcional)</label>
+          <textarea id="r-comentario" name="comentario" rows="3" placeholder="Alguna molestia puntual, preferencia, o lo que quieras contarnos"></textarea>
+        </div>
+
+        <!-- Campo trampa anti-spam: invisible para personas, tentador para bots -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="r-website">No completar este campo</label>
+          <input type="text" id="r-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="reserva-submit">
+          <span class="btn-text">Confirmar reserva</span>
+        </button>
+        <p class="form-status" id="reserva-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <!-- ===================== RESEÑAS ===================== -->
+    <section id="resenas" class="section resenas">
+      <p class="eyebrow">Reseñas</p>
+      <h2>Lo que cuentan después de una sesión</h2>
+
+      <div class="reviews-list" id="reviews-list">
+        <p class="reviews-loading">Cargando reseñas…</p>
+      </div>
+
+      <div class="review-form-wrap">
+        <h3>Dejanos tu reseña</h3>
+        <p class="section-intro">¿Ya viniste por acá? Contanos cómo te fue.</p>
+
+        <form id="review-form" class="form">
+          <div class="field">
+            <label for="v-nombre">Nombre</label>
+            <input type="text" id="v-nombre" name="nombre" autocomplete="name" required>
+          </div>
+
+          <div class="field">
+            <label id="rating-label">Calificación</label>
+            <fieldset class="star-picker" id="star-picker" aria-labelledby="rating-label">
+              <legend class="sr-only">Calificación de 1 a 5 estrellas</legend>
+              <button type="button" class="star" data-value="1" aria-pressed="false" aria-label="1 estrella">★</button>
+              <button type="button" class="star" data-value="2" aria-pressed="false" aria-label="2 estrellas">★</button>
+              <button type="button" class="star" data-value="3" aria-pressed="false" aria-label="3 estrellas">★</button>
+              <button type="button" class="star" data-value="4" aria-pressed="false" aria-label="4 estrellas">★</button>
+              <button type="button" class="star" data-value="5" aria-pressed="false" aria-label="5 estrellas">★</button>
+            </fieldset>
+            <input type="hidden" id="v-rating" name="rating">
+          </div>
+
+          <div class="field">
+            <label for="v-comentario">Comentario</label>
+            <textarea id="v-comentario" name="comentario" rows="3" placeholder="Contanos tu experiencia" required></textarea>
+          </div>
+
+          <div class="hp-field" aria-hidden="true">
+            <label for="v-website">No completar este campo</label>
+            <input type="text" id="v-website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="review-submit">
+            <span class="btn-text">Enviar reseña</span>
+          </button>
+          <p class="form-status" id="review-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer id="contacto" class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-name js-nombre-negocio">Sandra's Confort</p>
+      <p id="footer-horario">Lunes a sábado, 9:00 a 19:00 hs</p>
+      <p><a id="footer-tel" href="tel:">099 123 456</a></p>
+      <p><a id="footer-whatsapp" href="#" target="_blank" rel="noopener">Escribir por WhatsApp</a></p>
+      <p><a id="footer-instagram" href="#" target="_blank" rel="noopener">Instagram</a></p>
+      <p id="footer-direccion">San José de Mayo, Uruguay</p>
+      <p class="footer-copy">© <span id="footer-year"></span> <span class="js-nombre-negocio">Sandra's Confort</span></p>
+    </div>
+  </footer>
+
+  <!-- SDK de EmailJS (variable global emailjs) -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <!-- Nuestra lógica: Firebase + EmailJS + toda la interacción de la página -->
+  <script type="module" src="script.js"></script>
+</body>
+</html>

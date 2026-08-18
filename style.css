@@ -1,0 +1,448 @@
+/* =========================================================
+   SANDRA'S CONFORT — Estilos
+   Paleta cálida inspirada en masoterapia: linen, arcilla, salvia y miel.
+   Tipografía: Fraunces (display) + Karla (texto).
+   ========================================================= */
+
+:root {
+  /* Colores */
+  --bg: #F5EEE0;          /* fondo general: lino cálido */
+  --bg-card: #FBF7EF;     /* superficies: tarjetas, header */
+  --ink: #34281E;         /* texto principal: marrón oscuro cálido */
+  --ink-soft: #6B5A48;    /* texto secundario */
+  --clay: #9C5236;        /* acento principal: arcilla/ladrillo */
+  --clay-dark: #7C3F29;   /* hover del acento principal */
+  --sage: #6E7C58;        /* acento secundario: salvia */
+  --gold: #BD8B3F;        /* acento terciario: miel (estrellas, detalles) */
+  --error: #A8402C;       /* estados de error */
+  --line: rgba(52, 40, 30, 0.14); /* líneas divisorias suaves */
+
+  /* Tipografía */
+  --font-display: "Fraunces", serif;
+  --font-body: "Karla", sans-serif;
+
+  /* Espaciado */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4.5rem;
+  --space-7: clamp(4rem, 8vw, 7rem);
+
+  /* Radios y sombra */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --shadow-soft: 0 12px 30px -16px rgba(52, 40, 30, 0.28);
+}
+
+/* =========================================================
+   RESET Y BASE
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+button { font-family: inherit; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 560;
+  color: var(--ink);
+  margin: 0 0 var(--space-2);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+h1 em, h2 em, h3 em { font-style: italic; color: var(--clay); }
+
+h1 { font-size: clamp(2.3rem, 5vw + 1rem, 3.9rem); }
+h2 { font-size: clamp(1.8rem, 3vw + 1rem, 2.6rem); }
+h3 { font-size: clamp(1.3rem, 2vw + 1rem, 1.7rem); }
+
+p { margin: 0 0 var(--space-2); color: var(--ink-soft); }
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--clay);
+  margin: 0 0 var(--space-1);
+}
+
+.section-intro {
+  max-width: 46ch;
+  font-size: 1.05rem;
+}
+
+/* =========================================================
+   LAYOUT GENERAL
+   ========================================================= */
+.section {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: var(--space-7) var(--space-3);
+  text-align: center;
+}
+.section > .eyebrow,
+.section > .section-intro { margin-left: auto; margin-right: auto; }
+
+.reservas .form,
+.review-form-wrap .form { text-align: left; }
+
+/* =========================================================
+   HEADER / NAV
+   ========================================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(245, 238, 224, 0.88);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: var(--space-2) var(--space-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-family: var(--font-display);
+  font-weight: 560;
+  font-size: 1.25rem;
+  text-decoration: none;
+  color: var(--ink);
+}
+.nav {
+  display: flex;
+  gap: var(--space-4);
+}
+.nav a {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  transition: color .2s ease;
+}
+.nav a:hover { color: var(--clay); }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+.nav-toggle span {
+  width: 22px;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+}
+
+@media (max-width: 720px) {
+  .nav-toggle { display: flex; }
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    flex-direction: column;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav.is-open { max-height: 300px; }
+  .nav a {
+    padding: var(--space-2) var(--space-3);
+    border-top: 1px solid var(--line);
+  }
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-7) var(--space-3);
+  text-align: center;
+}
+.hero-ripples {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.hero-ripples svg { width: 100%; height: 100%; }
+.ripple {
+  fill: none;
+  stroke-width: 1.5px;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: respirar 8s ease-in-out infinite;
+}
+.ripple-1 { stroke: var(--clay); opacity: .32; animation-delay: 0s; }
+.ripple-2 { stroke: var(--sage); opacity: .24; animation-delay: .7s; }
+.ripple-3 { stroke: var(--gold); opacity: .18; animation-delay: 1.4s; }
+.ripple-4 { stroke: var(--clay); opacity: .10; animation-delay: 2.1s; }
+
+@keyframes respirar {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ripple { animation: none; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+  margin: 0 auto;
+}
+.hero-text { font-size: 1.1rem; margin-bottom: var(--space-4); }
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5em;
+  padding: 0.9rem 1.9rem;
+  border-radius: var(--radius-md);
+  border: none;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .2s ease, transform .15s ease, opacity .2s ease;
+}
+.btn-primary {
+  background: var(--clay);
+  color: var(--bg-card);
+}
+.btn-primary:hover { background: var(--clay-dark); }
+.btn-primary:active { transform: translateY(1px); }
+.btn:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+/* =========================================================
+   SERVICIOS
+   ========================================================= */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  text-align: left;
+}
+.service-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--line);
+}
+.service-card h3 { font-size: 1.25rem; margin-bottom: .3rem; }
+.service-meta {
+  font-weight: 700;
+  color: var(--sage);
+  font-size: .9rem;
+  margin-bottom: var(--space-2);
+}
+.service-desc { margin-bottom: 0; font-size: .97rem; }
+
+/* =========================================================
+   FORMULARIOS (reservas y reseñas)
+   ========================================================= */
+.form {
+  max-width: 640px;
+  margin: var(--space-4) auto 0;
+  background: var(--bg-card);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--line);
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+@media (max-width: 560px) {
+  .form-row { grid-template-columns: 1fr; }
+}
+.field { margin-bottom: var(--space-2); }
+.field label {
+  display: block;
+  font-weight: 700;
+  font-size: .88rem;
+  margin-bottom: .35rem;
+  color: var(--ink);
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: .75rem .9rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--line);
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: border-color .2s ease;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--clay);
+  outline: none;
+}
+.field textarea { resize: vertical; min-height: 5rem; }
+.field select:invalid { color: var(--ink-soft); }
+
+/* Campo trampa anti-spam: oculto visualmente, presente en el DOM */
+.hp-field {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  left: -9999px;
+}
+
+.form .btn { width: 100%; margin-top: var(--space-1); }
+
+.form-status {
+  margin: var(--space-2) 0 0;
+  font-weight: 600;
+  font-size: .95rem;
+  min-height: 1.4em;
+}
+.form-status.is-success { color: var(--sage); }
+.form-status.is-error { color: var(--error); }
+
+/* =========================================================
+   SELECTOR DE ESTRELLAS
+   ========================================================= */
+.star-picker {
+  display: flex;
+  gap: .3rem;
+  border: none;
+  padding: 0;
+  margin: 0 0 var(--space-2);
+}
+.star {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.9rem;
+  line-height: 1;
+  color: var(--line);
+  padding: .1rem;
+  transition: color .15s ease, transform .1s ease;
+}
+.star:hover { transform: scale(1.08); }
+.star.is-active { color: var(--gold); }
+
+/* =========================================================
+   RESEÑAS
+   ========================================================= */
+.reviews-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  text-align: left;
+}
+.reviews-loading,
+.reviews-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--ink-soft);
+}
+.review-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+  border: 1px solid var(--line);
+}
+.review-stars { color: var(--line); margin-bottom: .4rem; font-size: 1.1rem; }
+.review-star.is-filled { color: var(--gold); }
+.review-comment { color: var(--ink); font-style: italic; }
+.review-author {
+  font-weight: 700;
+  font-size: .85rem;
+  color: var(--sage);
+  margin-bottom: 0;
+}
+
+.review-form-wrap {
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--line);
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer {
+  background: var(--ink);
+  color: var(--bg);
+  margin-top: var(--space-6);
+}
+.footer-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-3);
+  text-align: center;
+}
+.footer-inner p { color: rgba(245, 238, 224, 0.78); margin-bottom: .5rem; }
+.footer-name {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--bg);
+  margin-bottom: var(--space-2);
+}
+.footer-inner a { text-decoration: none; }
+.footer-inner a:hover { color: var(--gold); }
+.footer-copy { margin-top: var(--space-3); font-size: .85rem; opacity: .7; }
